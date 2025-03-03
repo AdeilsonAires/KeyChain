@@ -239,15 +239,15 @@ func (hw *LayoutWindow) setContentContainer(win string) *fyne.Container {
 						}
 					case 3:
 						label.Hide()
-						buttonIndex := index // Criamos uma cópia local do índice para evitar capturas incorretas
+						buttonIndex := index 
 						if senhaVisivel[buttonIndex] {
-							button.SetIcon(theme.VisibilityOffIcon()) // Ícone de "esconder"
+							button.SetIcon(theme.VisibilityOffIcon()) 
 						} else {
-							button.SetIcon(theme.VisibilityIcon()) // Ícone de "mostrar"
+							button.SetIcon(theme.VisibilityIcon()) 
 						}
 						button.OnTapped = func() {
-							senhaVisivel[buttonIndex] = !senhaVisivel[buttonIndex] // Alterna o estado
-							credentialTable.Refresh()                              // Atualiza a tabela para refletir a mudança
+							senhaVisivel[buttonIndex] = !senhaVisivel[buttonIndex] 
+							credentialTable.Refresh()                              
 						}
 						button.Show()
 					case 4:
@@ -365,7 +365,7 @@ func (hw *LayoutWindow) setFormNewPassword(app fyne.App) {
 			return
 		}
 
-		dialog.ShowInformation("Sucesso", fmt.Sprintf("Site: %s\nUsuário: %s\nSenha salva!", websiteApp, user), formWin)
+		dialog.ShowInformation("Sucesso", fmt.Sprintf("Site/Aplicativo: %s\nUsuário: %s\nSenha salva!", websiteApp, user), formWin)
 
 		siteAppEntry.SetText("")
 		usuarioEntry.SetText("")
