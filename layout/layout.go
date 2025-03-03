@@ -24,7 +24,7 @@ type LayoutWindow struct {
 	ContentContainer        *fyne.Container
 	ManagePasswordsButton   *widget.Button
 	CreateNewPasswordButton *widget.Button
-	OpenWindows []fyne.Window
+	OpenWindows             []fyne.Window
 }
 
 func (hw *LayoutWindow) showEditPasswordDialog(cred database.Credential) {
@@ -75,7 +75,6 @@ func (hw *LayoutWindow) showEditPasswordDialog(cred database.Credential) {
 	editWin.Show()
 }
 
-// Função para gerar senha aleatória
 func gerarSenha(tamanho int) string {
 	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+"
 	senha := make([]byte, tamanho)
@@ -194,7 +193,7 @@ func (hw *LayoutWindow) setContentContainer(win string) *fyne.Container {
 		}
 		var senhaVisivel = make(map[int]bool)
 		credentialTable = widget.NewTable(
-			func() (int, int) { return len(list) + 1, 7 }, 
+			func() (int, int) { return len(list) + 1, 7 },
 			func() fyne.CanvasObject {
 				label := widget.NewLabel("")
 				button := widget.NewButtonWithIcon("", theme.ContentCopyIcon(), nil)
@@ -207,7 +206,7 @@ func (hw *LayoutWindow) setContentContainer(win string) *fyne.Container {
 				button := cont.Objects[1].(*widget.Button)
 				label.Show()
 				button.Hide()
-		
+
 				if tableCell.Row == 0 {
 					switch tableCell.Col {
 					case 0:
@@ -248,7 +247,7 @@ func (hw *LayoutWindow) setContentContainer(win string) *fyne.Container {
 						}
 						button.OnTapped = func() {
 							senhaVisivel[buttonIndex] = !senhaVisivel[buttonIndex] // Alterna o estado
-							credentialTable.Refresh() // Atualiza a tabela para refletir a mudança
+							credentialTable.Refresh()                              // Atualiza a tabela para refletir a mudança
 						}
 						button.Show()
 					case 4:
@@ -294,7 +293,7 @@ func (hw *LayoutWindow) setContentContainer(win string) *fyne.Container {
 				}
 			},
 		)
-		
+
 		for row := 0; row < len(list)+1; row++ {
 			credentialTable.SetRowHeight(row, 40)
 		}
@@ -325,17 +324,17 @@ func (hw *LayoutWindow) setFormNewPassword(app fyne.App) {
 	siteAppEntry := widget.NewEntry()
 	siteAppEntry.SetPlaceHolder("Digite o nome do site/app (Tamanho maximo 20 caracteres)")
 	siteAppEntry.OnChanged = func(text string) {
-	if len(text) > 20 {
-		siteAppEntry.SetText(text[:20])
-		siteAppEntry.CursorColumn = 20 
+		if len(text) > 20 {
+			siteAppEntry.SetText(text[:20])
+			siteAppEntry.CursorColumn = 20
+		}
 	}
-}
 	usuarioEntry := widget.NewEntry()
 	usuarioEntry.SetPlaceHolder("Digite seu usuário (Tamanho maximo 30 caracteres)")
 	usuarioEntry.OnChanged = func(text string) {
 		if len(text) > 30 {
 			usuarioEntry.SetText(text[:30])
-			usuarioEntry.CursorColumn = 30 
+			usuarioEntry.CursorColumn = 30
 		}
 	}
 	senhaEntry := widget.NewEntry()
